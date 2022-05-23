@@ -16,11 +16,12 @@
   background-color: #040303;
 }
 
-.icon {
+.icon img{
   width: 1.5rem;
   height: 1.5rem;
-  margin-right: 1rem;
+  margin: 0.2rem 0.5rem;
 }
+
 
 .badge {
   background-color: #4d1601;
