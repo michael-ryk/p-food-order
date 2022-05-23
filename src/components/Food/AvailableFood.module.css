@@ -1,0 +1,13 @@
+.food {
+  max-width: 50rem;
+  width: 90%;
+  margin: 1rem auto;
+  background-color: #461111;
+  color: white;
+}
+
+.food ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
