@@ -1,7 +1,7 @@
 const DUMMY_FOOD = [
   {
     id: '1',
-    name: 'Anrecote',
+    name: 'Antrecote',
     description: 'Mega Steak 400 gram',
     price: 39.99,
   },
