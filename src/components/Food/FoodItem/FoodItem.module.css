@@ -5,3 +5,17 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid #ccc;
 }
+
+.food__name {
+  font-size: 1.5rem;
+}
+
+.food__description {
+  font-style: italic;
+}
+
+.food__price {
+  font-weight: bold;
+  color: #A13333;
+  font-size: 1.5rem;
+}

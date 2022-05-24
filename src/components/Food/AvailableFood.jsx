@@ -9,7 +9,7 @@ const AvailableFood = () => {
       <Card>
         <ul>
           {DUMMY_FOOD.map(item => {
-            return <li><FoodItem props={item.name}/></li>})
+            return <FoodItem key={item.id} {...item}/>})
             }
         </ul>
       </Card>
