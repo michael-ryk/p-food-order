@@ -1,9 +1,7 @@
 .food {
-  max-width: 50rem;
+  max-width: 70rem;
   width: 90%;
   margin: 1rem auto;
-  background-color: #461111;
-  color: white;
 }
 
 .food ul{
