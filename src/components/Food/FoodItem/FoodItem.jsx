@@ -1,4 +1,5 @@
 import classes from './FoodItem.module.css';
+import FoodItemForm from './FoodItemForm';
 
 const FoodItem = ({name, description, price}) => {
 
@@ -8,6 +9,9 @@ const FoodItem = ({name, description, price}) => {
         <h3 className={classes.food__name}>{name}</h3>
         <p className={classes.food__description}>{description}</p>
         <p className={classes.food__price}>{price.toFixed(2)}</p>
+      </div>
+      <div>
+        <FoodItemForm />
       </div>
     </li>
   );
