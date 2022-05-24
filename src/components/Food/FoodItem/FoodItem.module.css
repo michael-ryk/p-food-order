@@ -2,20 +2,26 @@
   display: flex;
   justify-content: space-between;
   margin: 1rem;
-  padding-bottom: 1rem;
   border-bottom: 1px solid #ccc;
+}
+
+.food:not(:last-child) {
+  padding-bottom: 1rem;
 }
 
 .food__name {
   font-size: 1.5rem;
+  margin: 0 0 0.25rem 0;
 }
 
 .food__description {
   font-style: italic;
+  margin:0;
 }
 
 .food__price {
   font-weight: bold;
   color: #A13333;
   font-size: 1.5rem;
+  margin: 0.25rem 0 0 0;
 }
