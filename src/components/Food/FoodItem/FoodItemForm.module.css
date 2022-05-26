@@ -1,9 +1,10 @@
 .form {
-  text-align: right;
+  text-align: center;
 }
 
 .form button {
   cursor: pointer;
+  margin: 0.8rem auto;
   background-color: #461111;
   border: 1px solid #461111;
   color: white;
