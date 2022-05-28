@@ -5,7 +5,7 @@ const Cart = (props) => {
   const cartItems = [{ id: 'b1', name: 'punch', amount: 2, price: 13.0 }];
 
   return (
-    <Modal>
+    <Modal onBackdropClick={props.onCloseClick}>
       <h1>My order</h1>
       <ul className={classes['cart-items']}>
         {cartItems.map(item => <li key={item.id}>{item.name}</li>)}

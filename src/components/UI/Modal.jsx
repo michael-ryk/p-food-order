@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom';
 import classes from './Modal.module.css';
 
-const Backdrop = () => {
-  return <div className={classes.backdrop} />
+const Backdrop = (props) => {
+  return <div className={classes.backdrop} onClick={props.onBackdropClick}/>
 };
 
 const ModalOverlay = ({children}) => {
@@ -15,11 +15,11 @@ const ModalOverlay = ({children}) => {
 
 const portalElement = document.getElementById('portalOver');
 
-const Modal = ({children}) => {
+const Modal = ({children, onBackdropClick}) => {
   
   return (
     <>
-      {createPortal(<Backdrop />, portalElement)}
+      {createPortal(<Backdrop onBackdropClick={onBackdropClick}/>, portalElement)}
       {createPortal(<ModalOverlay>{children}</ModalOverlay>, portalElement)}
     </>
   );
