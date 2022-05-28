@@ -6,7 +6,7 @@ const Header = props => {
   return <>
     <header className={classes.header}>
       <h1>Food Order App</h1>
-      <HeaderCartButton />
+      <HeaderCartButton onClickSubmit={props.onPressCart}/>
     </header>
     <div className={classes['main-image']}>
       <img src={coverImage} alt='cover'/>

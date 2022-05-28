@@ -6,12 +6,20 @@ import classes from './App.module.css';
 
 function App() {
 
-  const [showModal, setShowModal] = useState(false);
+  const [modalShown, setModalShown] = useState(false);
+
+  const revealModal = () => {
+    setModalShown(true);
+  }
+
+  const hideModal = () => {
+    setModalShown(false);
+  }
 
   return (
     <>
-      {showModal && <Cart />}
-      <Header />
+      {modalShown && <Cart onCloseClick={hideModal}/>}
+      <Header onPressCart={revealModal} />
       <main className={classes.main}>
         <Food />
       </main>
