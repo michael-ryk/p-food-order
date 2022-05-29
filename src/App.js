@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './components/Layout/Header';
 import Food from './components/Food/Food';
 import Cart from './components/Cart/Cart';
+import ItemsProvider from './components/store/ItemsProvider';
 import classes from './App.module.css';
 
 function App() {
@@ -17,13 +18,13 @@ function App() {
   }
 
   return (
-    <>
+    <ItemsProvider>
       {modalShown && <Cart onCloseClick={hideModal}/>}
       <Header onPressCart={revealModal} />
       <main className={classes.main}>
         <Food />
       </main>
-    </>
+    </ItemsProvider>
   );
 }
 
