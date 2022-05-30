@@ -6,7 +6,9 @@ import ItemsContext from '../store/ItemsContext';
 
 const HeaderCartButton = (props) => {
   const itemsFromContext = useContext(ItemsContext);
-  const numberOfCartItems = itemsFromContext.items.length;
+  const numberOfCartItems = itemsFromContext.items.reduce((totalQuantity ,item) => {
+    return totalQuantity + item.orderedQuantity;
+  }, 0);
 
   return (
     <button className={classes.button} onClick={props.onClickSubmit}>
