@@ -1,6 +1,6 @@
-import React from 'react';
+import { createContext } from 'react';
 
-const ItemsContext = React.createContext({
+const ItemsContext = createContext({
   items: [],
   orderedQuantity: 0,
   addToOrder: (item) => {},
