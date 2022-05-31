@@ -1,18 +1,31 @@
 import { useReducer } from 'react';
 import ItemsContext from './ItemsContext';
 
+// Reducer default value
 const cartDefault = {
   items: [],
-  totalOrderedItems: 0
+  totalCartPrice: 0
 }
 
+// Reducer actions - returns new state of cartState
 const cartReducer = (state, action) => {
   if (action.action === 'ADD') {
-    const currentItems = state.items.concat(action.item);
-    const currentTotal = state.totalOrderedItems + action.item.price * action.item.orderedQuantity;
+    const totalOrderedItems = state.items.concat(action.item);
+    const totalOrderedPrice = state.totalCartPrice + action.item.price * action.item.amount;
+    
+    // Debug log
+    // console.log("=== ItemsProvider - cartReducer func === ");
+    // console.log('// State')
+    // console.log(state);
+    // console.log('// Action')
+    // console.log(action)
+    // console.log('// Calculations of total items and price')
+    // console.log(totalOrderedItems)
+    // console.log(totalOrderedPrice)
+    
     return {
-      items: currentItems,
-      totalOrderedItems: currentTotal
+      items: totalOrderedItems,
+      totalCartPrice: totalOrderedPrice
     }
   }
   return cartDefault;
@@ -20,7 +33,13 @@ const cartReducer = (state, action) => {
 
 const ItemsProvider = (props) => {
 
+  // Array of ordered items + total price calculated
   const [cartState, dispatchCart] = useReducer(cartReducer, cartDefault);
+
+  // Debug log
+  // console.log('=== ItemsProvider ===')
+  // console.log('// cartState')
+  // console.log(cartState);
 
   const addItemToCart = (item) => {
     dispatchCart({action: 'ADD', item: item});
@@ -32,7 +51,7 @@ const ItemsProvider = (props) => {
 
   const itemsContext = {
     items: cartState.items,
-    orderedQuantity: cartState.totalOrderedItems,
+    orderPrice: cartState.totalCartPrice,
     addToOrder: addItemToCart,
     removeFromOrder: removeItemFromCart,
   };

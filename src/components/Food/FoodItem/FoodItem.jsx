@@ -7,11 +7,12 @@ const FoodItem = ({id, name, description, price}) => {
 
   const context = useContext(itemsContext);
 
-  const addToCartHandle = amount => {
+  // ItemAmount filled by user while other from items list
+  const addToCartHandle = ItemAmount => {
     context.addToOrder({
       id: id,
       name: name,
-      amount: amount,
+      amount: ItemAmount,
       price: price
     })
   }

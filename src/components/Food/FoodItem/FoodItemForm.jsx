@@ -8,15 +8,15 @@ const FoodItemForm = (props) => {
 
   const submitHandle = (e) => {
     e.preventDefault();
-    const enteredQuantity = +amountInput.current.value;
+    const singleItemAmount = +amountInput.current.value;
 
     //Validation - i have input validation already
-    if (enteredQuantity === 0 || enteredQuantity < 1 || enteredQuantity > 5) {
+    if (singleItemAmount === 0 || singleItemAmount < 1 || singleItemAmount > 5) {
       setAmountValid(false);
       return;
     }
 
-    props.onAddToCart(enteredQuantity);
+    props.onAddToCart(singleItemAmount);
   }; 
 
   return (
