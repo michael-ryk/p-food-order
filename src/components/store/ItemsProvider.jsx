@@ -41,23 +41,56 @@ const cartReducer = (state, action) => {
     const totalOrderedPrice =
       state.totalCartPrice + action.item.price * action.item.amount;
       
-    // Debug log
-    // console.log('totalOrderedItems:');
-    // console.log(totalOrderedItems);
-    // console.log("=== ItemsProvider - cartReducer func === ");
-    // console.log('// State')
-    // console.log(state);
-    // console.log('// Action')
-    // console.log(action)
-    // console.log('// Calculations of total items and price')
-    // console.log(totalOrderedItems)
-    // console.log(totalOrderedPrice)
+      return {
+        items: totalOrderedItems,
+        totalCartPrice: totalOrderedPrice,
+      };
+    }
+    
+    if (action.action === 'REMOVE'){
+      
+      // Debug log
+      console.log("=== ItemsProvider - cartReducer func === ");
+      console.log('// State')
+      console.log(state);
+      console.log('// Action')
+      console.log(action)
+      // console.log('// Calculations of total items and price')
+      // console.log(totalOrderedItems)
+      // console.log(totalOrderedPrice)
+
+    const existingItemIndex = state.items.findIndex(
+      (item) => item.id === action.id
+    );
+
+    console.log(existingItemIndex);
+
+    const existingItem = state.items[existingItemIndex];
+    const newAmount = state.totalCartPrice - existingItem.price;
+
+    let updatedListOfItems;
+
+    console.log(state);
+    console.log(newAmount);
+    
+    // Last item left ? Remove completly
+    if (existingItem.amount === 1 ){
+      // Remove item
+      updatedListOfItems = state.items.filter(item => item.id !== action.id)
+    } else {
+      // Keep item, just decrease amount
+      const updatedItem = {...existingItem, amount: existingItem.amount - 1}
+      updatedListOfItems = [...state.items];
+      updatedListOfItems[existingItemIndex] = updatedItem;
+    }
 
     return {
-      items: totalOrderedItems,
-      totalCartPrice: totalOrderedPrice,
+      items: updatedListOfItems,
+      totalCartPrice: newAmount,
     };
+
   }
+
   return cartDefault;
 };
 

@@ -20,6 +20,7 @@ const Cart = (props) => {
 
   const removeItem = (id) => {
     console.log(id)
+    cartContext.removeFromOrder(id);
   };
 
   return (
