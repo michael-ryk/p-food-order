@@ -50,11 +50,11 @@ const cartReducer = (state, action) => {
     if (action.action === 'REMOVE'){
       
       // Debug log
-      console.log("=== ItemsProvider - cartReducer func === ");
-      console.log('// State')
-      console.log(state);
-      console.log('// Action')
-      console.log(action)
+      // console.log("=== ItemsProvider - cartReducer func === ");
+      // console.log('// State')
+      // console.log(state);
+      // console.log('// Action')
+      // console.log(action)
       // console.log('// Calculations of total items and price')
       // console.log(totalOrderedItems)
       // console.log(totalOrderedPrice)
@@ -63,15 +63,13 @@ const cartReducer = (state, action) => {
       (item) => item.id === action.id
     );
 
-    console.log(existingItemIndex);
-
     const existingItem = state.items[existingItemIndex];
     const newAmount = state.totalCartPrice - existingItem.price;
 
     let updatedListOfItems;
 
-    console.log(state);
-    console.log(newAmount);
+    // console.log(state);
+    // console.log('newAmount' + newAmount);
     
     // Last item left ? Remove completly
     if (existingItem.amount === 1 ){
