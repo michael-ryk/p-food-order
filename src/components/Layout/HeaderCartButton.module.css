@@ -16,12 +16,25 @@
   background-color: #040303;
 }
 
+.bounce {
+  animation: bounce 0.3s ease 1;
+}
+
+@keyframes bounce {
+    0% { transform:translateY(0%); }
+    10% { transform:translateY(-20%); }
+    20% { transform:translateY(0%); }
+    25% { transform:translateY(-10%); }
+    27% { transform:translateY(0%); }
+    29% { transform:translateY(-5%); }
+    100% { transform:translateY(0); }
+}
+
 .icon img{
   width: 1.5rem;
   height: 1.5rem;
   margin: 0.2rem 0.5rem;
 }
-
 
 .badge {
   background-color: #4d1601;
