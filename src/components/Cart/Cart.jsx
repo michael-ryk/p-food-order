@@ -1,13 +1,15 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import ItemsContext from '../store/ItemsContext'; //to show added to cart items
+import OrderForm from './OrderForm';
 
 const Cart = (props) => {
   const cartContext = useContext(ItemsContext);
   const totalPrice = cartContext.orderPrice.toFixed(2);
   const cartNotEmpty = cartContext.items.length > 0;
+  const [isOrder, setIsOrder] = useState(false);
 
   // Debug log
   // console.log("=== Cart.jsx ===")
@@ -22,6 +24,10 @@ const Cart = (props) => {
     console.log(id)
     cartContext.removeFromOrder(id);
   };
+
+  const submitHandler = () => {
+    setIsOrder(true);
+  }
 
   return (
     <Modal onBackdropClick={props.onCloseClick}>
@@ -40,12 +46,15 @@ const Cart = (props) => {
         <span>Total: </span>
         <span>$ {totalPrice}</span>
       </div>
-      <div className={classes.actions}>
-        <button className={classes['button--alt']} onClick={props.onCloseClick}>
-          Close
-        </button>
-        {cartNotEmpty && <button>Submit</button>}
-      </div>
+      {isOrder && <OrderForm onCancel={props.onCloseClick}/>}
+      {!isOrder &&
+        <div className={classes.actions}>
+          <button className={classes['button--alt']} onClick={props.onCloseClick}>
+            Close
+          </button>
+        {cartNotEmpty && <button onClick={submitHandler}>Submit</button>}
+        </div>
+      }
     </Modal>
   );
 };
