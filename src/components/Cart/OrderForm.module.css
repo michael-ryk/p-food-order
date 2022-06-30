@@ -1,3 +1,35 @@
-.inputfield {
-  
+.inputfield:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+
+.inputfield label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.buttons {
+  margin-top: 15px;
+}
+
+form button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #A13333;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+
+form button:hover,
+form button:active {
+  background-color: #461111;
+  border-color: #461111;
+  color: white;
+}
+
+form .button--alt {
+  color: #A13333;
+  font-weight: bold;
 }
