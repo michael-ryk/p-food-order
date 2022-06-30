@@ -6,12 +6,14 @@ import FoodItem from './FoodItem/FoodItem';
 const AvailableFood = () => {
 
   const [foodList, setFoodList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Fetch data from DB once when page loaded
   useEffect(()=>{
 
     // Trick to use expression and call it to make it work from useEffect
     const fetchFoodList = async () => {
+      setIsLoading(true);
       const response = await fetch("https://p-food-order-default-rtdb.firebaseio.com/meals.json");
       const data = await response.json();
       
@@ -27,12 +29,14 @@ const AvailableFood = () => {
       }
 
       setFoodList(foodFromDb);
+      setIsLoading(false);
     }
     fetchFoodList();
   },[]);
 
   return (
     <section className={classes.food}>
+      {isLoading && <p className={classes.isLoading}>Data Loading ...</p>}
       <Card>
         <ul>
           {foodList.map(item => {
