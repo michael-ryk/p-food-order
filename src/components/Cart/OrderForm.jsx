@@ -2,7 +2,6 @@ import { useState } from 'react';
 import classes from './OrderForm.module.css';
 
 const OrderForm = (props) => {
-  const [formValid, setFormValid] = useState(false);
 
   const [formInputs, setFormInputs] = useState({
     fname: '',
@@ -29,48 +28,49 @@ const OrderForm = (props) => {
 
   const formValidate = (e) => {
     e.preventDefault();
-    setFormValidation((prev) => {
-      return { ...prev, fname: !isEmpty(formInputs.fname) };
-    });
-    setFormValidation((prev) => {
-      return { ...prev, lname: !isEmpty(formInputs.lname) };
-    });
-    setFormValidation((prev) => {
-      return { ...prev, address: !isEmpty(formInputs.address) };
-    });
-    setFormValidation((prev) => {
-      return { ...prev, city: !isEmpty(formInputs.city) };
+
+    const fnameValid = !isEmpty(formInputs.fname)
+    const lnameValid = !isEmpty(formInputs.lname)
+    const addressValid = !isEmpty(formInputs.address)
+    const cityValid = !isEmpty(formInputs.city)
+    
+    const formValid = fnameValid && lnameValid && addressValid && cityValid;
+
+    setFormValidation({
+      fname: fnameValid,
+      lname: lnameValid,
+      address: addressValid,
+      city: cityValid
     });
 
-    setFormValid(
-      formValidation.fname &&
-        formValidation.lname &&
-        formValidation.address &&
-        formValidation.city
-    );
+    if (!formValid) {
+      return;
+    }
 
+    //Submit form
+    console.log("Form Valid - Submit it next")
   };
 
   return (
     <form onSubmit={formValidate}>
       <div className={classes.inputfield}>
         <label htmlFor='fname'>First Name</label>
-        <input onChange={handleChange} type='text' id='fname' />
+        <input onChange={handleChange} type='text' id='fname' value={formInputs.fname}/>
         {!formValidation.fname && <p>Enter your name</p>}
       </div>
       <div className={classes.inputfield}>
         <label htmlFor='lname'>Last Name</label>
-        <input onChange={handleChange} type='text' id='lname' />
+        <input onChange={handleChange} type='text' id='lname' value={formInputs.lname}/>
         {!formValidation.lname && <p>Enter your last name</p>}
       </div>
       <div className={classes.inputfield}>
         <label htmlFor='address'>Address</label>
-        <input onChange={handleChange} type='text' id='address' />
+        <input onChange={handleChange} type='text' id='address' value={formInputs.address}/>
         {!formValidation.address && <p>Enter your address</p>}
       </div>
       <div className={classes.inputfield}>
         <label htmlFor='city'>City</label>
-        <input onChange={handleChange} type='text' id='city' />
+        <input onChange={handleChange} type='text' id='city' value={formInputs.city}/>
         {!formValidation.city && <p>Enter your city</p>}
       </div>
       <div className={classes.buttons}>
