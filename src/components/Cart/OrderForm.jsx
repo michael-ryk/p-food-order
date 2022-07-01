@@ -49,6 +49,7 @@ const OrderForm = (props) => {
 
     //Submit form
     console.log("Form Valid - Submit it next")
+    props.onSubmit();
   };
 
   return (

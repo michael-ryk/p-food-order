@@ -29,6 +29,11 @@ const Cart = (props) => {
     setIsOrder(true);
   }
 
+  const confirmHandler = () => {
+    console.log("Order Confirmed - sent to place")
+  }
+
+
   return (
     <Modal onBackdropClick={props.onCloseClick}>
       <h1>My order</h1>
@@ -46,7 +51,7 @@ const Cart = (props) => {
         <span>Total: </span>
         <span>$ {totalPrice}</span>
       </div>
-      {isOrder && <OrderForm onCancel={props.onCloseClick} onSubmit={submitHandler}/>}
+      {isOrder && <OrderForm onCancel={props.onCloseClick} onSubmit={confirmHandler}/>}
       {!isOrder &&
         <div className={classes.actions}>
           <button className={classes['button--alt']} onClick={props.onCloseClick}>
