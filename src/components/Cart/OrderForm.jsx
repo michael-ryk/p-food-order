@@ -2,36 +2,52 @@ import { useState } from 'react';
 import classes from './OrderForm.module.css';
 
 const OrderForm = (props) => {
-  
+  const [formValid, setFormValid] = useState(false);
+
   const [formInputs, setFormInputs] = useState({
     fname: '',
     lname: '',
     address: '',
-    city: ''
-  })
+    city: '',
+  });
 
   const [formValidation, setFormValidation] = useState({
     fname: true,
     lname: true,
     address: true,
-    city: true
-  })
+    city: true,
+  });
 
   const handleChange = (e) => {
-    const {id, value} = e.target;
+    const { id, value } = e.target;
     setFormInputs((prev) => {
-      return {...prev, [id]: value}
-    })
-  }
+      return { ...prev, [id]: value };
+    });
+  };
 
   const isEmpty = (value) => value.trim() === '';
 
   const formValidate = (e) => {
     e.preventDefault();
-    setFormValidation(prev => {return {...prev, fname: !isEmpty(formInputs.fname)}})
-    setFormValidation(prev => {return {...prev, lname: !isEmpty(formInputs.lname)}})
-    setFormValidation(prev => {return {...prev, address: !isEmpty(formInputs.address)}})
-    setFormValidation(prev => {return {...prev, city: !isEmpty(formInputs.city)}})
+    setFormValidation((prev) => {
+      return { ...prev, fname: !isEmpty(formInputs.fname) };
+    });
+    setFormValidation((prev) => {
+      return { ...prev, lname: !isEmpty(formInputs.lname) };
+    });
+    setFormValidation((prev) => {
+      return { ...prev, address: !isEmpty(formInputs.address) };
+    });
+    setFormValidation((prev) => {
+      return { ...prev, city: !isEmpty(formInputs.city) };
+    });
+
+    setFormValid(
+      formValidation.fname &&
+        formValidation.lname &&
+        formValidation.address &&
+        formValidation.city
+    );
 
   };
 
