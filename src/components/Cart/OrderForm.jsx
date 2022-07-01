@@ -53,22 +53,22 @@ const OrderForm = (props) => {
 
   return (
     <form onSubmit={formValidate}>
-      <div className={classes.inputfield}>
+      <div className={`${classes.inputfield} ${formValidation.fname ? '' : classes.invalid}`}>
         <label htmlFor='fname'>First Name</label>
         <input onChange={handleChange} type='text' id='fname' value={formInputs.fname}/>
         {!formValidation.fname && <p>Enter your name</p>}
       </div>
-      <div className={classes.inputfield}>
+      <div className={`${classes.inputfield} ${formValidation.lname ? '' : classes.invalid}`}>
         <label htmlFor='lname'>Last Name</label>
         <input onChange={handleChange} type='text' id='lname' value={formInputs.lname}/>
         {!formValidation.lname && <p>Enter your last name</p>}
       </div>
-      <div className={classes.inputfield}>
+      <div className={`${classes.inputfield} ${formValidation.address ? '' : classes.invalid}`}>
         <label htmlFor='address'>Address</label>
         <input onChange={handleChange} type='text' id='address' value={formInputs.address}/>
         {!formValidation.address && <p>Enter your address</p>}
       </div>
-      <div className={classes.inputfield}>
+      <div className={`${classes.inputfield} ${formValidation.city ? '' : classes.invalid}`}>
         <label htmlFor='city'>City</label>
         <input onChange={handleChange} type='text' id='city' value={formInputs.city}/>
         {!formValidation.city && <p>Enter your city</p>}

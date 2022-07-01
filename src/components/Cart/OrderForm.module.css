@@ -2,7 +2,6 @@
   margin-bottom: 5px;
 }
 
-
 .inputfield label {
   font-weight: bold;
   margin-right: 5px;
@@ -32,4 +31,13 @@ form button:active {
 form .button--alt {
   color: #A13333;
   font-weight: bold;
+}
+
+.invalid label{
+  color: #A13333;
+}
+
+.invalid input{
+  background-color: #ebaaaa;
+  border-color: #ff5b5b;
 }
