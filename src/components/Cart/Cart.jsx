@@ -46,7 +46,7 @@ const Cart = (props) => {
         <span>Total: </span>
         <span>$ {totalPrice}</span>
       </div>
-      {isOrder && <OrderForm onCancel={props.onCloseClick}/>}
+      {isOrder && <OrderForm onCancel={props.onCloseClick} onSubmit={submitHandler}/>}
       {!isOrder &&
         <div className={classes.actions}>
           <button className={classes['button--alt']} onClick={props.onCloseClick}>

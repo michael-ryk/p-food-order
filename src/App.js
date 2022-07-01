@@ -19,7 +19,7 @@ function App() {
 
   return (
     <ItemsProvider>
-      {modalShown && <Cart onCloseClick={hideModal}/>}
+      {modalShown && <Cart onCloseClick={hideModal} />}
       <Header onPressCart={revealModal} />
       <main className={classes.main}>
         <Food />
