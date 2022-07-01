@@ -25,12 +25,22 @@ const Cart = (props) => {
     cartContext.removeFromOrder(id);
   };
 
+  // Items in cart, confirmation form open to add user data
   const submitHandler = () => {
     setIsOrder(true);
   }
 
-  const confirmHandler = () => {
-    console.log("Order Confirmed - sent to place")
+  // Final confirmation of user data and send to order
+  const confirmHandler = (userInfo) => {
+    console.log("Order Confirmed - sent to DB")
+    fetch('https://p-food-order-default-rtdb.firebaseio.com/orders.json', {
+      method: 'POST',
+      body: JSON.stringify({
+        user: userInfo.fname + "-" + userInfo.lname,
+        order: cartContext.items,
+        address: userInfo.address + "_" + userInfo.city
+      })
+    })
   }
 
 
@@ -51,7 +61,7 @@ const Cart = (props) => {
         <span>Total: </span>
         <span>$ {totalPrice}</span>
       </div>
-      {isOrder && <OrderForm onCancel={props.onCloseClick} onSubmit={confirmHandler}/>}
+      {isOrder && <OrderForm onCancel={props.onCloseClick} onConfirm={confirmHandler}/>}
       {!isOrder &&
         <div className={classes.actions}>
           <button className={classes['button--alt']} onClick={props.onCloseClick}>
