@@ -38,23 +38,24 @@ const Cart = (props) => {
     setIsSubmit(true);
     
     try{
-      const response = await fetch('https://p-food-order-default-rtdb.firebaseio.com/orders.json', {
-        method: 'POST',
-        body: JSON.stringify({
-          user: userInfo.fname + "-" + userInfo.lname,
-          order: cartContext.items,
-          address: userInfo.address + "_" + userInfo.city
-        })
-      })
-      const data = await response.json();
+    //   const response = await fetch('https://p-food-order-default-rtdb.firebaseio.com/orders.json', {
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //       user: userInfo.fname + "-" + userInfo.lname,
+    //       order: cartContext.items,
+    //       address: userInfo.address + "_" + userInfo.city
+    //     })
+    //   })
+    //   const data = await response.json();
+      alert("Order sent to server!")
       setIsSubmit(false);
-      setError(null);
-      return data;
+    //   setError(null);
+    //   return data;
     } catch (e){
-      setIsSubmit(false);
-      console.log(e);
-      setError(e);
-      return e;
+    //   setIsSubmit(false);
+    //   console.log(e);
+    //   setError(e);
+    //   return e;
     }
   }
   
