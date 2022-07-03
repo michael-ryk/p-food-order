@@ -10,6 +10,8 @@ const Cart = (props) => {
   const totalPrice = cartContext.orderPrice.toFixed(2);
   const cartNotEmpty = cartContext.items.length > 0;
   const [isOrder, setIsOrder] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [error, setError] = useState();
 
   // Debug log
   // console.log("=== Cart.jsx ===")
@@ -31,19 +33,31 @@ const Cart = (props) => {
   }
 
   // Final confirmation of user data and send to order
-  const confirmHandler = (userInfo) => {
-    console.log("Order Confirmed - sent to DB")
-    fetch('https://p-food-order-default-rtdb.firebaseio.com/orders.json', {
-      method: 'POST',
-      body: JSON.stringify({
-        user: userInfo.fname + "-" + userInfo.lname,
-        order: cartContext.items,
-        address: userInfo.address + "_" + userInfo.city
+  const confirmHandler = async (userInfo) => {
+    // console.log("Order Confirmed - sent to DB")
+    setIsSubmit(true);
+    
+    try{
+      const response = await fetch('https://p-food-order-default-rtdb.firebaseio.com/orders.json', {
+        method: 'POST',
+        body: JSON.stringify({
+          user: userInfo.fname + "-" + userInfo.lname,
+          order: cartContext.items,
+          address: userInfo.address + "_" + userInfo.city
+        })
       })
-    })
+      const data = await response.json();
+      setIsSubmit(false);
+      setError(null);
+      return data;
+    } catch (e){
+      setIsSubmit(false);
+      console.log(e);
+      setError(e);
+      return e;
+    }
   }
-
-
+  
   return (
     <Modal onBackdropClick={props.onCloseClick}>
       <h1>My order</h1>
@@ -62,6 +76,8 @@ const Cart = (props) => {
         <span>$ {totalPrice}</span>
       </div>
       {isOrder && <OrderForm onCancel={props.onCloseClick} onConfirm={confirmHandler}/>}
+      {isSubmit && <p>Order submitting ...</p>}
+      {error && <p>Error connect to DB</p>}
       {!isOrder &&
         <div className={classes.actions}>
           <button className={classes['button--alt']} onClick={props.onCloseClick}>
