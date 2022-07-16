@@ -1,30 +1,29 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
-import ItemsContext from '../store/ItemsContext'; //to show added to cart items
 import OrderForm from './OrderForm';
 
 const Cart = (props) => {
-  const cartContext = useContext(ItemsContext);
-  const totalPrice = cartContext.orderPrice.toFixed(2);
-  const cartNotEmpty = cartContext.items.length > 0;
+
+  const itemsInCart = useSelector(state => state.cartItems)
+  const totalPrice = useSelector(state => state.totalCartPrice);
+  const cartNotEmpty = itemsInCart.length > 0;
+
+  // const totalPrice = cartContext.orderPrice.toFixed(2);
   const [isOrder, setIsOrder] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
   const [error, setError] = useState();
 
-  // Debug log
-  // console.log("=== Cart.jsx ===")
-  // console.log('// cartContext')
-  // console.log(cartContext);
-
   const addItem = (item) => {
-    cartContext.addToOrder({...item, amount:1});
+    // cartContext.addToOrder({...item, amount:1});
   };
 
   const removeItem = (id) => {
     console.log(id)
-    cartContext.removeFromOrder(id);
+    // cartContext.removeFromOrder(id);
   };
 
   // Items in cart, confirmation form open to add user data
@@ -63,7 +62,7 @@ const Cart = (props) => {
     <Modal onBackdropClick={props.onCloseClick}>
       <h1>My order</h1>
       <ul className={classes['cart-items']}>
-        {cartContext.items.map((item) => (
+        {itemsInCart.map((item) => (
           <CartItem
             key={item.id}
             {...item}
