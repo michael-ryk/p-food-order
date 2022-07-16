@@ -31,7 +31,19 @@ const appSlice = createSlice({
       state.totalQuantity += newItem.amount;
     },
     removeItemFromCart(state, action){
-      //TBD
+      const itemToRemove = action.payload;
+      const itemInCart = state.cartItems.find(item => item.name === itemToRemove.name);
+
+      if (itemInCart.amount === 1) {
+        // console.log("Last item in cart - remove");
+        state.cartItems = state.cartItems.filter(item => item.name !== itemToRemove.name);        
+      } else {
+        // console.log('Not last item in cart - decrease');
+        itemInCart.amount -= itemToRemove.amount;
+      }
+      
+      state.totalCartPrice -= itemToRemove.price;
+      state.totalQuantity -= itemToRemove.amount;
     }
   }
 });

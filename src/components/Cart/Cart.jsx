@@ -23,9 +23,8 @@ const Cart = (props) => {
     dispatch(appActions.addItemToCart({name: item.name, amount: 1, price: item.price}))
   };
 
-  const removeItem = (id) => {
-    console.log(id)
-    // cartContext.removeFromOrder(id);
+  const removeItem = (item) => {
+    dispatch(appActions.removeItemFromCart({name: item.name, amount: 1, price: item.price}))
   };
 
   // Items in cart, confirmation form open to add user data
@@ -69,7 +68,7 @@ const Cart = (props) => {
             key={item.id}
             {...item}
             onAdd={addItem.bind(null, item)}
-            onRemove={removeItem.bind(null, item.id)}
+            onRemove={removeItem.bind(null, item)}
           />
         ))}
       </ul>
