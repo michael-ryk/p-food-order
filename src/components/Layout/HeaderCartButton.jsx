@@ -1,22 +1,25 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import classes from './HeaderCartButton.module.css';
 import cart from '../../assets/cart.png';
-import ItemsContext from '../store/ItemsContext';
+// import ItemsContext from '../store/ItemsContext';
 
 const HeaderCartButton = (props) => {
-  const itemsFromContext = useContext(ItemsContext);
-  const numberOfCartItems = itemsFromContext.items.reduce(
-    (totalAmount, item) => {
-      return totalAmount + item.amount;
-    },
-    0
-  );
+
+  const numberOfCartItems = useSelector(state => state.totalQuantity);
+  // const itemsFromContext = useContext(ItemsContext);
+  // const numberOfCartItems = itemsFromContext.items.reduce(
+  //   (totalAmount, item) => {
+  //     return totalAmount + item.amount;
+  //   },
+  //   0
+  // );
 
   // Bounce effect on button when user add new item
   const [animationAttached, setAnimationAttached] = useState(false);
   useEffect(() => {
-    if (itemsFromContext.items.length === 0) return;
+    // if (itemsFromContext.items.length === 0) return;
 
     setAnimationAttached(true);
 
@@ -28,7 +31,7 @@ const HeaderCartButton = (props) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [itemsFromContext.items]);
+  }, [numberOfCartItems]);
 
   return (
     <button

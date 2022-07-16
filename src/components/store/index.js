@@ -1,12 +1,21 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = {
+  cartItems: [],
+  totalQuantity: 0,
+  totalCartPrice: 0,
+};
 
 const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    //tbd
+    addItemToCart(state, action){
+      //TBD
+    },
+    removeItemFromCart(state, action){
+      //TBD
+    }
   }
 });
 
