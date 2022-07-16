@@ -8,13 +8,6 @@ import cart from '../../assets/cart.png';
 const HeaderCartButton = (props) => {
 
   const numberOfCartItems = useSelector(state => state.totalQuantity);
-  // const itemsFromContext = useContext(ItemsContext);
-  // const numberOfCartItems = itemsFromContext.items.reduce(
-  //   (totalAmount, item) => {
-  //     return totalAmount + item.amount;
-  //   },
-  //   0
-  // );
 
   // Bounce effect on button when user add new item
   const [animationAttached, setAnimationAttached] = useState(false);

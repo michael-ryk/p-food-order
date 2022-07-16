@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import OrderForm from './OrderForm';
+import { appActions } from '../store';
 
 const Cart = (props) => {
 
+  const dispatch = useDispatch();
   const itemsInCart = useSelector(state => state.cartItems)
   const totalPrice = useSelector(state => state.totalCartPrice);
   const cartNotEmpty = itemsInCart.length > 0;
@@ -18,7 +20,7 @@ const Cart = (props) => {
   const [error, setError] = useState();
 
   const addItem = (item) => {
-    // cartContext.addToOrder({...item, amount:1});
+    dispatch(appActions.addItemToCart({name: item.name, amount: 1, price: item.price}))
   };
 
   const removeItem = (id) => {
