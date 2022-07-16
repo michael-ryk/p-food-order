@@ -1,20 +1,21 @@
-import {useContext} from 'react'
-import classes from './FoodItem.module.css';
+import { useDispatch } from 'react-redux';
+
 import FoodItemForm from './FoodItemForm';
-import itemsContext from '../../store/ItemsContext';
+import { appActions } from '../../store/index';
+import classes from './FoodItem.module.css';
 
-const FoodItem = ({id, name, description, price}) => {
+const FoodItem = ({name, description, price}) => {
 
-  const context = useContext(itemsContext);
+  const dispatch = useDispatch();
 
-  // ItemAmount filled by user while other from items list
   const addToCartHandle = ItemAmount => {
-    context.addToOrder({
-      id: id,
+
+    dispatch(appActions.addItemToCart({
       name: name,
       amount: ItemAmount,
-      price: price
-    })
+      price: price,
+    }));
+
   }
 
   return (

@@ -12,12 +12,12 @@ const cartReducer = (state, action) => {
   if (action.action === 'ADD') {
     // Check if this items already order and add to existing item
 
-    const existingItemIndex = state.items.findIndex(
-      (item) => item.id === action.item.id
-    );
-    const existingItem = state.items[existingItemIndex];
-    let updatedItem;
-    let updatedListOfItems;
+    // const existingItemIndex = state.items.findIndex(
+    //   (item) => item.id === action.item.id
+    // );
+    // const existingItem = state.items[existingItemIndex];
+    // let updatedItem;
+    // let updatedListOfItems;
 
     // Debug log
     // console.log('!!! current items !!!');
@@ -25,26 +25,26 @@ const cartReducer = (state, action) => {
     // console.log('User input item:');
     // console.log(action.item);
 
-    if (existingItem) {
-      updatedItem = {
-        ...existingItem,
-        amount: existingItem.amount + action.item.amount,
-      };
-      updatedListOfItems = [...state.items];
-      updatedListOfItems[existingItemIndex] = updatedItem;
-    } else {
-      updatedItem = {...action.item};
-      updatedListOfItems = state.items.concat(updatedItem);
-    }
+    // if (existingItem) {
+    //   updatedItem = {
+    //     ...existingItem,
+    //     amount: existingItem.amount + action.item.amount,
+    //   };
+    //   updatedListOfItems = [...state.items];
+    //   updatedListOfItems[existingItemIndex] = updatedItem;
+    // } else {
+    //   updatedItem = {...action.item};
+    //   updatedListOfItems = state.items.concat(updatedItem);
+    // }
 
-    const totalOrderedItems = updatedListOfItems;
-    const totalOrderedPrice =
-      state.totalCartPrice + action.item.price * action.item.amount;
+    // const totalOrderedItems = updatedListOfItems;
+    // const totalOrderedPrice =
+    //   state.totalCartPrice + action.item.price * action.item.amount;
       
-      return {
-        items: totalOrderedItems,
-        totalCartPrice: totalOrderedPrice,
-      };
+    //   return {
+    //     items: totalOrderedItems,
+    //     totalCartPrice: totalOrderedPrice,
+    //   };
     }
     
     if (action.action === 'REMOVE'){
