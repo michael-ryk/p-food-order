@@ -74,7 +74,7 @@ const Cart = (props) => {
       </ul>
       <div className={classes.total}>
         <span>Total: </span>
-        <span>$ {totalPrice}</span>
+        <span>$ {totalPrice.toFixed(2)}</span>
       </div>
       {isOrder && <OrderForm onCancel={props.onCloseClick} onConfirm={confirmHandler}/>}
       {isSubmit && <p>Order submitting ...</p>}
