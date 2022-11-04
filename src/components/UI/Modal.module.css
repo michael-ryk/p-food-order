@@ -21,3 +21,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 20;
 }
+
+@media only screen and (max-width: 900px){
+  .modal {
+    width: 95%;
+    left: 0;
+  }
+}
